@@ -1,0 +1,205 @@
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Homie 💙 | A Special Question from Captain</title>
+  <!-- Tailwind CSS & Canvas Confetti -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
+  
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #fef08a 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .font-cute {
+      font-family: 'Fredoka', cursive;
+    }
+    .csk-yellow {
+      color: #facc15;
+    }
+    .csk-bg-yellow {
+      background-color: #facc15;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border: 2px solid rgba(255, 255, 255, 0.6);
+    }
+    /* Floating background items */
+    .bg-bubble {
+      position: absolute;
+      list-style: none;
+      display: block;
+      width: 20px;
+      height: 20px;
+      background: rgba(56, 189, 248, 0.3);
+      bottom: -150px;
+      animation: square 20s infinite linear;
+      border-radius: 50%;
+    }
+    @keyframes square {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center p-4 relative min-h-screen">
+
+  <!-- Background Animated Elements -->
+  <ul class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+    <li class="bg-bubble" style="left: 10%; width: 30px; height: 30px; animation-duration: 12s;">💙</li>
+    <li class="bg-bubble" style="left: 20%; width: 25px; height: 25px; animation-delay: 2s;">🦁</li>
+    <li class="bg-bubble" style="left: 35%; width: 35px; height: 35px; animation-duration: 15s;">✨</li>
+    <li class="bg-bubble" style="left: 50%; width: 20px; height: 20px; animation-delay: 4s;">💙</li>
+    <li class="bg-bubble" style="left: 65%; width: 40px; height: 40px; animation-duration: 18s;">💛</li>
+    <li class="bg-bubble" style="left: 80%; width: 25px; height: 25px; animation-delay: 1s;">🧢</li>
+    <li class="bg-bubble" style="left: 90%; width: 30px; height: 30px; animation-delay: 3s;">💙</li>
+  </ul>
+
+  <!-- Main Container -->
+  <main class="z-10 w-full max-w-lg">
+    
+    <!-- Hero Header -->
+    <div class="glass-card rounded-3xl p-6 text-center shadow-xl border mb-6">
+      <div class="inline-block px-4 py-1 rounded-full bg-blue-100 text-blue-700 font-semibold text-sm mb-3">
+        Hey Homie 👋
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-sky-900 mb-2 font-cute">
+        Captain Has A Message For You 🧢💙
+      </h1>
+      <p class="text-sky-700 text-sm sm:text-base">
+        A special page built just for you (with plenty of blue & CSK yellow vibes).
+      </p>
+    </div>
+
+    <!-- Mini Quiz Section -->
+    <div id="quiz-section" class="glass-card rounded-3xl p-6 shadow-xl text-center mb-6">
+      <h2 class="text-xl font-bold text-sky-900 mb-4 font-cute">
+        Quick Verification Quiz 🦁
+      </h2>
+      <p class="text-gray-700 text-sm mb-4">Who is the ultimate whistle podu team?</p>
+      
+      <div class="grid grid-cols-2 gap-3" id="quiz-buttons">
+        <button onclick="wrongAnswer(this)" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 rounded-xl border border-gray-200 shadow-sm transition">
+          MI
+        </button>
+        <button onclick="rightAnswer()" class="csk-bg-yellow hover:bg-yellow-400 text-sky-950 font-bold py-2 px-4 rounded-xl shadow-md transition">
+          CSK 🦁💛
+        </button>
+        <button onclick="wrongAnswer(this)" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 rounded-xl border border-gray-200 shadow-sm transition">
+          RCB
+        </button>
+        <button onclick="wrongAnswer(this)" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 rounded-xl border border-gray-200 shadow-sm transition">
+          KKR
+        </button>
+      </div>
+
+      <div id="quiz-feedback" class="mt-4 hidden text-sm font-semibold"></div>
+    </div>
+
+    <!-- The Big Proposal Card -->
+    <div class="glass-card rounded-3xl p-8 text-center shadow-2xl relative overflow-hidden">
+      <div class="text-5xl mb-3">👑💙</div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-sky-950 font-cute mb-3">
+        Homie...
+      </h2>
+      <p class="text-sky-800 font-medium mb-8 text-lg sm:text-xl">
+        Every Captain needs their favorite person. Will you be my girlfriend?
+      </p>
+
+      <!-- Buttons Area -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 min-h-[120px] relative" id="button-wrapper">
+        <!-- YES Button -->
+        <button onclick="acceptProposal()" id="yes-btn" class="bg-sky-500 hover:bg-sky-600 text-white font-extrabold text-xl py-4 px-10 rounded-2xl shadow-lg hover:scale-110 transition duration-200 w-full sm:w-auto">
+          YES! 💙
+        </button>
+
+        <!-- NO Button (Runaway) -->
+        <button onmouseover="moveButton()" onclick="moveButton()" id="no-btn" class="bg-slate-200 text-slate-600 font-semibold py-3 px-8 rounded-2xl shadow transition duration-150 w-full sm:w-auto sm:absolute">
+          No 😜
+        </button>
+      </div>
+    </div>
+
+    <!-- Celebration Screen (Hidden by default) -->
+    <div id="celebration" class="fixed inset-0 bg-sky-900/90 backdrop-blur-md z-50 flex flex-col items-center justify-center p-6 text-center text-white hidden">
+      <div class="text-6xl mb-4 animate-bounce">🦁🎉💙</div>
+      <h1 class="text-4xl sm:text-5xl font-black font-cute mb-4 text-yellow-300">
+        SHE SAID YES!
+      </h1>
+      <p class="text-lg sm:text-xl max-w-md text-sky-100 mb-6">
+        Homie + Captain = The Ultimate Team! 🥳<br/>
+        Get ready for the best dates, victories, and endless happiness together!
+      </p>
+      <div class="csk-bg-yellow text-sky-950 px-6 py-3 rounded-full font-bold shadow-lg">
+        Whistle Podu! 💛🦁
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // Quiz feedback
+    function wrongAnswer(btn) {
+      const feedback = document.getElementById('quiz-feedback');
+      feedback.className = "mt-4 text-red-500 font-semibold block";
+      feedback.innerText = "Nope! Homie only roots for the best 🦁💛";
+    }
+
+    function rightAnswer() {
+      const feedback = document.getElementById('quiz-feedback');
+      feedback.className = "mt-4 text-emerald-600 font-bold block";
+      feedback.innerText = "Correct! You passed the Captain's test! 💛✨";
+      confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
+    }
+
+    // Runaway No Button Logic
+    function moveButton() {
+      const noBtn = document.getElementById('no-btn');
+      const wrapper = document.getElementById('button-wrapper');
+      
+      const wrapperRect = wrapper.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+      
+      // Calculate random positions within viewport bounds
+      const maxX = window.innerWidth - btnRect.width - 20;
+      const maxY = window.innerHeight - btnRect.height - 20;
+      
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      noBtn.style.position = 'fixed';
+      noBtn.style.left = randomX + 'px';
+      noBtn.style.top = randomY + 'px';
+    }
+
+    // Yes Button Click Celebration
+    function acceptProposal() {
+      document.getElementById('celebration').classList.remove('hidden');
+
+      // Trigger Confetti Storm
+      var count = 200;
+      var defaults = { origin: { y: 0.7 } };
+
+      function fire(particleRatio, opts) {
+        confetti(Object.assign({}, defaults, opts, {
+          particleCount: Math.floor(count * particleRatio)
+        }));
+      }
+
+      fire(0.25, { spread: 26, startVelocity: 55 });
+      fire(0.2, { spread: 60, colors: ['#facc15', '#0284c7', '#ffffff'] });
+      fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+      fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+      fire(0.1, { spread: 120, startVelocity: 45 });
+    }
+  </script>
+</body>
+</html>
